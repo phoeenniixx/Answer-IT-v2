@@ -1,7 +1,7 @@
 import streamlit as st
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.document_loaders import PyPDFLoader, DirectoryLoader
-from transformers import T5Tokenizer, T5ForConditionalGeneration
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 from transformers import pipeline
 import torch
 import base64
@@ -25,8 +25,8 @@ if uploaded_file:
 
 placeholder = st.empty()
 checkpoint = "google/flan-t5-large"
-tokenizer = T5Tokenizer.from_pretrained(checkpoint)
-model = T5ForConditionalGeneration.from_pretrained(checkpoint, torch_dtype=torch.float32)
+tokenizer = AutoTokenizer.from_pretrained(model_id)
+model = AutoModelForSeq2SeqLM.from_pretrained(model_id)
 
 query = st.text_input("Question: ")
 process_text = st.button("Ask Question")
