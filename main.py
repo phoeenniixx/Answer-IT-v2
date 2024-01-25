@@ -10,6 +10,9 @@ st.set_page_config(layout="wide")
 st.title("Answer IT")
 st.sidebar.title("Document uploading section")
 
+checkpoint = "google/flan-t5-large"
+tokenizer = AutoTokenizer.from_pretrained(checkpoint)
+model = AutoModelForSeq2SeqLM.from_pretrained(checkpoint)
 
 uploaded_file = st.sidebar.file_uploader("Upload your PDF file", type=['pdf'])
 if uploaded_file:
@@ -24,9 +27,6 @@ if uploaded_file:
     st.sidebar.markdown(pdf_display, unsafe_allow_html=True)
 
 placeholder = st.empty()
-checkpoint = "google/flan-t5-large"
-tokenizer = AutoTokenizer.from_pretrained(checkpoint)
-model = AutoModelForSeq2SeqLM.from_pretrained(checkpoint)
 
 query = st.text_input("Question: ")
 process_text = st.button("Ask Question")
