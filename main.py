@@ -26,7 +26,7 @@ if uploaded_file:
 placeholder = st.empty()
 checkpoint = "google/flan-t5-large"
 tokenizer = AutoTokenizer.from_pretrained(checkpoint)
-model = AutoModelForSeq2SeqLM.from_pretrained(model_id)
+model = AutoModelForSeq2SeqLM.from_pretrained(checkpoint)
 
 query = st.text_input("Question: ")
 process_text = st.button("Ask Question")
